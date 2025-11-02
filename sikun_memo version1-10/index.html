@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sikun memo</title>
+
+<style>
+/* 🎨 デザイン（CSS統合済み） */
+body {
+font-family: "Segoe UI", sans-serif;
+background: linear-gradient(160deg, #f0f4ff, #d8e2ff);
+color: #333;
+padding: 20px;
+margin: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+min-height: 100vh;
+}
+
+h1 {
+text-align: center;
+color: #2c3e50;
+margin-bottom: 10px;
+}
+
+textarea {
+width: 100%;
+max-width: 500px;
+height: 200px;
+font-size: 1rem;
+border-radius: 8px;
+border: 1px solid #ccc;
+padding: 10px;
+box-sizing: border-box;
+resize: vertical;
+background: white;
+}
+
+button {
+padding: 10px 20px;
+border: none;
+border-radius: 8px;
+font-size: 1rem;
+margin: 10px 5px;
+background-color: #4CAF50;
+color: white;
+box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+transition: 0.2s;
+}
+button:hover {
+opacity: 0.85;
+transform: scale(1.02);
+}
+
+#memoList {
+width: 100%;
+max-width: 500px;
+margin-top: 20px;
+background: #fff;
+border-radius: 8px;
+padding: 10px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.memo-item {
+border-bottom: 1px solid #ddd;
+padding: 8px 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.memo-item:last-child {
+border-bottom: none;
+}
+.memo-text {
+flex: 1;
+word-wrap: break-word;
+}
+.delete-btn {
+background: #e74c3c;
+color: white;
+border: none;
+border-radius: 6px;
+padding: 5px 10px;
+cursor: pointer;
+}
+.delete-btn:hover {
+opacity: 0.85;
+}
+</style>
+</head>
+<body>
+
+<h1>♥しくんめも♥</h1>
+<textarea id="memoInput" placeholder="ここにメモを入力..."></textarea><br>
+<button id="saveBtn">保存</button>
+<button id="clearBtn">すべて削除</button>
+
+<div id="memoList"></div>
+
+<script>
+/* 💾 メモ機能（localStorage使用） */
+const input = document.getElementById("memoInput");
+const list = document.getElementById("memoList");
+
+function loadMemos() {
+const memos = JSON.parse(localStorage.getItem("memos") || "[]");
+list.innerHTML = "";
+memos.forEach((text, index) => {
+const item = document.createElement("div");
+item.className = "memo-item";
+
+const span = document.createElement("span");
+span.className = "memo-text";
+span.textContent = text;
+
+const delBtn = document.createElement("button");
+delBtn.className = "delete-btn";
+delBtn.textContent = "削除";
+delBtn.onclick = () => deleteMemo(index);
+
+item.appendChild(span);
+item.appendChild(delBtn);
+list.appendChild(item);
+});
+}
+
+function saveMemo() {
+const text = input.value.trim();
+if (!text) return;
+const memos = JSON.parse(localStorage.getItem("memos") || "[]");
+memos.push(text);
+localStorage.setItem("memos", JSON.stringify(memos));
+input.value = "";
+loadMemos();
+}
+
+function deleteMemo(index) {
+const memos = JSON.parse(localStorage.getItem("memos") || "[]");
+memos.splice(index, 1);
+localStorage.setItem("memos", JSON.stringify(memos));
+loadMemos();
+}
+
+function clearAll() {
+if (confirm("すべてのメモを削除しますか？")) {
+localStorage.removeItem("memos");
+loadMemos();
+}
+}
+
+document.getElementById("saveBtn").onclick = saveMemo;
+document.getElementById("clearBtn").onclick = clearAll;
+loadMemos();
+</script>
+
+</body>
+</html>
