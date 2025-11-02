@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>しくんめも</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<h1>♡しくん めも♡</h1>
+
+<input type="text" id="titleInput" placeholder="タイトル">
+<input type="text" id="tagInput" placeholder="タグ（カンマ区切り）">
+<select id="prioritySelect">
+<option value="normal">でふぉると</option>
+<option value="important">いむぽーたんと</option>
+<option value="note">めも</option>
+</select>
+<textarea id="memoInput" placeholder="内容を入力..."></textarea>
+
+<button id="saveBtn">保存</button>
+<button id="clearBtn">全削除</button>
+
+<h2>検索</h2>
+<input type="text" id="searchInput" placeholder="タイトル・タグ・本文で検索">
+
+<ul id="memoList"></ul>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

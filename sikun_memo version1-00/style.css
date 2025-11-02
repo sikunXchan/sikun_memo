@@ -1,0 +1,95 @@
+body {
+font-family: sans-serif;
+background-color: #f3f9ff;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+min-height: 100vh;
+padding: 20px 0;
+}
+
+.container {
+width: 95%;
+max-width: 420px;
+background: white;
+padding: 20px;
+border-radius: 15px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+input, textarea, select {
+width: 100%;
+margin-bottom: 10px;
+padding: 10px;
+border-radius: 10px;
+border: 1px solid #ccc;
+font-size: 16px;
+}
+
+textarea {
+height: 90px;
+resize: none;
+}
+
+button {
+padding: 10px 20px;
+margin: 5px 5px 10px 0;
+border: none;
+border-radius: 8px;
+background-color: #5cbefc;
+color: white;
+font-size: 15px;
+cursor: pointer;
+}
+
+button:hover {
+background-color: #0099ff;
+}
+
+ul {
+list-style: none;
+padding: 0;
+}
+
+li {
+padding: 10px;
+margin-bottom: 10px;
+border-radius: 10px;
+transition: 0.3s;
+animation: fadeIn 0.4s ease;
+}
+
+li.important { background-color: #ffdddd; }
+li.normal { background-color: #e6f7ff; }
+li.note { background-color: #fffde7; }
+
+.memo-header {
+font-weight: bold;
+font-size: 18px;
+}
+
+.memo-tags {
+font-size: 13px;
+color: #555;
+}
+
+.memo-date {
+font-size: 11px;
+color: #777;
+}
+
+.memo-content {
+margin-top: 6px;
+white-space: pre-wrap;
+}
+
+li button {
+font-size: 12px;
+margin-top: 5px;
+margin-right: 8px;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
